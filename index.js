@@ -19,7 +19,8 @@ console.log(createMenuItem('chocolateMilkshake', 'Chocolate Milkshake', 12, "Bev
 console.log(createMenuItem('lettuceCups', 'Lettuce Cups', 8, "Appetizer"));
 
 
-/* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given a string as a parameter. 
+/* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given 
+a string as a parameter. 
 
 Your method should accept: 
 
@@ -30,6 +31,24 @@ and should return a number.
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
 
+const burger = {
+  name: "Burger", 
+  price: 18, 
+  category: "Lunch",
+  discount: function(customer){
+    switch (customer){
+      case "teacher":
+      return this.price - (this.price*.25);
+      case 'student':
+      return this.price - (this.price*.15);
+      case 'public':
+      return this.price - (this.price*.10);
+      default:
+      return this.price;
+    }
+  }
+}
+console.log(burger.discount("public"));
 ///////////////Reviews (MVP)///////////////////
 
 const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},
@@ -77,10 +96,10 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
 function getReviewByIndex(arr, index) {
-    return `${this.name} gave this restaurant a ${this.rating} review and their feedback was: ${this.feedback}`;
+    return `${arr[index].name} gave this restaurant a ${arr[index].rating} review and their feedback was: ${arr[index].feedback}`;
   }
   
-console.log(getReviewByIndex(reviews, 1));
+console.log(getReviewByIndex(reviews, 8));
 
 /* Task 8: Write a function to get information about the most recent review called `getLastReview`
 
@@ -91,11 +110,13 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
-    /* code here */
+function getLastReview(arr) {
+    let index = (reviews[reviews.length -1]);
+    return `${arr[index].name} gave this restaurant a ${arr[index].rating} review and their feedback was: ${arr[index].feedback}`;
+    
   } 
 
-
+console.log(getLastReview(reviews));
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
 /** STRETCH 1: Write a function called `getReviewByRating` that returns an array containing all reviews in a certain range. Your function should accept: 
